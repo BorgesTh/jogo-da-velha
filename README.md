@@ -1,2 +1,2 @@
-# jogo-da-velha
+# JOGO DA VELHA
 https://borgesth.github.io/jogo-da-velha/
