@@ -1,26 +1,26 @@
 body {
     font: normal 15pt arial;
-    background: rgba(0, 0, 0, 0.842);
+    background: rgb(55, 60, 109);
     margin: 0;
     padding-top: 60px;
     user-select: none;
     text-align: center;
 }
 h1 {
-    background: rgb(107, 107, 107);
+    
     width: 340px;
     height: 50px;
     line-height: 50px;
     margin: 20px auto;
-    border: 1px solid white;
-    border-radius: 5px;
-    color: white;
-    text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.514);
-    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.473);
+    border-bottom: 1px solid white;
+    border-radius: 10px;
+    color: rgb(221, 221, 221);
+    text-shadow: 0px 3px 3px black;
+    box-shadow: 0px 3px 0px rgba(0, 0, 0, 0.719);
     text-align: center;
 }
 div {
-    background: rgb(107, 107, 107);
+    background: rgb(105, 22, 22);
     font-size: 40pt;
     line-height: 99px;
     color: rgb(255, 255, 255);
@@ -36,48 +36,57 @@ div#tabuleiro {
     height: 340px;
     margin: 0 auto;
     font-size: 0;
-    border: 1px solid white;
+    border: 3px solid rgb(0, 0, 0);
     border-radius: 10px;
-    box-shadow: 2px 2px 3px rgb(0, 0, 0);
+    box-shadow: 3px 3px 5px rgb(0, 0, 0);
 }
+
+div > div {
+    color: black;
+}
+
+div > div:hover {
+    cursor: pointer;
+}
+
 div#casa0 {
-    border-right: 1px solid white;
-    border-bottom: 1px solid white;
+    border-right: 1px solid rgb(0, 0, 0);
+    border-bottom: 1px solid rgb(0, 0, 0);
 }
 div#casa1 {
-    border-bottom: 1px solid white;
+    border-bottom: 1px solid rgb(0, 0, 0);
 }
 div#casa2 {
-    border-left: 1px solid white;
-    border-bottom: 1px solid white;
+    border-left: 1px solid rgb(0, 0, 0);
+    border-bottom: 1px solid rgb(0, 0, 0);
 }
 div#casa3 {
-    border-right: 1px solid white;
+    border-right: 1px solid rgb(0, 0, 0);
 }
 div#casa5 {
-    border-left: 1px solid white;
+    border-left: 1px solid rgb(0, 0, 0);
 }
 div#casa6 {
-    border-top: 1px solid white;
-    border-right: 1px solid white;
+    border-top: 1px solid rgb(0, 0, 0);
+    border-right: 1px solid rgb(0, 0, 0);
 }
 div#casa7 {
-    border-top: 1px solid white;
+    border-top: 1px solid rgb(0, 0, 0);
 }
 div#casa8 {
-    border-top: 1px solid white;
-    border-left: 1px solid white;
+    border-top: 1px solid rgb(0, 0, 0);
+    border-left: 1px solid rgb(0, 0, 0);
 }
 
 button {
-    background: rgb(107, 107, 107);
+    background: rgba(255, 255, 255, 0.767);
     width: 110px;
     height: 50px;
     margin: 20px;
     border-radius: 5px;
     font: bold 10pt arial;
-    color: white;
-    box-shadow: 1px 1px 3px black;
+    color: black;
+    box-shadow: 2px 2px 3px black;
     cursor: pointer;
 }
 
