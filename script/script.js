@@ -1,93 +1,59 @@
-var jogo = "";
+var rodando = true;
 var rodada = 1;
 var botao = document.querySelector('button#recomeçar');
 var casa = [];
 for (let i = 0; i < 9; i++) {
     casa.push(document.querySelector('div#casa' + i));
 }  
-        
-function jogar(C) {
-    if (casa[C].textContent == "") {
-        let jogador = rodada % 2 === 0? 'O' : 'X'; 
-        casa[C].innerHTML = jogador;
-        rodada++;
-    }
     
-    if (casa[0].textContent == 'X' && casa[1].textContent == 'X' && casa[2].textContent == 'X' || casa[0].textContent == 'O' && casa[1].textContent == 'O' && casa[2].textContent == 'O') {
-        for (var i = 0; i < 3; i++) {
-            casa[i].style.color = 'white';
-        }
-        for (var i = 0; i < 9; i++) {
-            casa[i] = 'FIM';
-        }
+function VerificaVencedor(player) {
+
+    const iguais = valor => casa[valor].textContent === player;
+    
+    for (let i = 0; i < 3; i++) {   
+        let linha = [i * 3 + 0, i * 3 + 1, i * 3 + 2]
+        if (linha.every(iguais)) return linha;
     }
-    if (casa[3].textContent == 'X' && casa[4].textContent == 'X' && casa[5].textContent == 'X' || casa[3].textContent == 'O' && casa[4].textContent == 'O' && casa[5].textContent == 'O') {
-        for (var i = 3; i < 6; i++) {
-            casa[i].style.color = 'white';
-        }
-        for (var i = 0; i < 9; i++) {
-            casa[i] = 'FIM';
-        }
+
+    for (let i = 0; i < 3; i++) {
+        let coluna = [i, i + 3, i + 6];
+        if (coluna.every(iguais)) return coluna;
     }
-    if (casa[6].textContent == 'X' && casa[7].textContent == 'X' && casa[8].textContent == 'X' || casa[6].textContent == 'O' && casa[7].textContent == 'O' && casa[8].textContent == 'O') {
-        for (var i = 6; i < 9; i++) {
-            casa[i].style.color = 'white';
-        }
-        for (var i = 0; i < 9; i++) {
-            casa[i] = 'FIM';
-        }
-    }
-    if (casa[0].textContent == 'X' && casa[3].textContent == 'X' && casa[6].textContent == 'X' || casa[0].textContent == 'O' && casa[3].textContent == 'O' && casa[6].textContent == 'O') {
-        for (var i = 0; i < 9; i += 3) {
-            casa[i].style.color = 'white';
-        }
-        for (var i = 0; i < 9; i++) {
-            casa[i] = 'FIM';
-        }
-    }
-    if (casa[1].textContent == 'X' && casa[4].textContent == 'X' && casa[7].textContent == 'X' || casa[1].textContent == 'O' && casa[4].textContent == 'O' && casa[7].textContent == 'O') {
-        for (var i = 1; i < 9; i += 3) {
-            casa[i].style.color = 'white';
-        }
-        for (var i = 0; i < 9; i++) {
-            casa[i] = 'FIM';
-        }
-    }
-    if (casa[2].textContent == 'X' && casa[5].textContent == 'X' && casa[8].textContent == 'X' || casa[2].textContent == 'O' && casa[5].textContent == 'O' && casa[8].textContent == 'O') {
-        for (var i = 2; i < 9; i += 3) {
-            casa[i].style.color = 'white';
-        }
-        for (var i = 0; i < 9; i++) {
-            casa[i] = 'FIM';
-        }
-    }
-    if (casa[0].textContent == 'X' && casa[4].textContent == 'X' && casa[8].textContent == 'X' || casa[0].textContent == 'O' && casa[4].textContent == 'O' && casa[8].textContent == 'O') {
-        for (var i = 0; i < 9; i += 4) {
-            casa[i].style.color = 'white';
-        }
-        for (var i = 0; i < 9; i++) {
-            casa[i] = 'FIM';
-        }
-    }
-    if (casa[2].textContent == 'X' && casa[4].textContent == 'X' && casa[6].textContent == 'X' || casa[2].textContent == 'O' && casa[4].textContent == 'O' && casa[6].textContent == 'O') {
-        for (var i = 2; i < 8; i += 2) {
-            casa[i].style.color = 'white';
-        }
-        for (var i = 0; i < 9; i++) {
-            casa[i] = 'FIM';
-        }
+
+    let diagonalPrincipal = [0, 4, 8]
+    if (diagonalPrincipal.every(iguais)) return diagonalPrincipal;
+
+    let diagonalSecundaria = [2, 4, 6]
+    if (diagonalSecundaria.every(iguais)) return diagonalSecundaria;
+
+    return false;
+}
+
+function jogar(C) {
+
+    if (!rodando) return;
+
+    if (casa[C].textContent != "") return;
+    
+    let jogador = rodada % 2 === 0? 'O' : 'X'; 
+    casa[C].innerHTML = jogador;
+    rodada++;
+    
+    let vencedor = VerificaVencedor(jogador);
+    if (vencedor) {
+        rodando = false;
+        vencedor.forEach(valor => casa[valor].style.color = "white");
     }
 }
 
 function recomeçar() {
-    for (var i = 0; i < 9; i++) {
-        casa[i] = document.querySelector('div#casa' + i);
-    }
+
     for (var i = 0; i < 9; i++) {
         casa[i].innerHTML = "";
         casa[i].style.color = "black";
     }
     rodada = 1;
+    rodando = true;
 }
 
 botao.addEventListener('click', recomeçar);
